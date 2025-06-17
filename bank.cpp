@@ -31,9 +31,10 @@ public:
 
     double withdraw(double amount)
     {
-        if (amount >= balance)
+        if (amount > balance)
         {
-            cout << "first deposit balance....";
+          cout << "Insufficient balance. Please deposit funds before withdrawing." << endl;
+
         }else{
             balance -= amount;
         }
@@ -59,7 +60,7 @@ class SavingsAccount : public BankAccount
     double interestRate=0;
     double calculateInterest()
     {
-        double time, interest;
+        double time, interest=0;
         double rate;
         cout << "how many interest you want to put apply.(in percentage): ";
         cin >> rate;
@@ -101,7 +102,7 @@ class CheckingAccount : public BankAccount
         return balance;
     }
 
-    // check overdraft
+    
     void checkOverdraft() {
         if (balance < 0) {
             cout << " Overdraft used:= " << -balance << endl;
@@ -128,7 +129,8 @@ class FixedDepositAccount : public BankAccount
 
         for (int i = 0; i < time; i++)
         {
-            double monthlyInterest = (present_balance * interestRate) / 100;
+          double monthlyInterest = (present_balance * (interestRate / 12)) / 100;
+
             present_balance += monthlyInterest;
         }
 
